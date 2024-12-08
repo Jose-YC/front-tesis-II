@@ -9,9 +9,11 @@ export const OrdenSlice = createSlice({
         onAddProductOrden: (state,{payload} ) => {
             const { id, name, product_id, measures_id, name_measures, price, quantity, url } = payload;
             const productInOrden = state.product.some(
-                (item) => (item.product_id === product_id && item.measures_id === measures_id)
+                (item) => 
+                    (item.product_id === product_id && 
+                    item.measures_id === measures_id)
             );
-            console.log(productInOrden);
+
             if (!productInOrden) {
                 state.product = [
                     ...state.product, 
@@ -29,7 +31,8 @@ export const OrdenSlice = createSlice({
                 return
             }
             state.product =  state.product.map((item) => {
-                if (item.product_id === product_id && item.measures_id === measures_id) {
+                if (item.product_id === product_id && 
+                    item.measures_id === measures_id) {
                     return {...item, quantity: item.quantity + quantity}
                 }
                 return item; 

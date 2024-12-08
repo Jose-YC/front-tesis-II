@@ -74,7 +74,7 @@ export const ListUser = ({data, DeleteUser}) => {
             </td>
             <td className="whitespace-nowrap px-3 py-4 text-sm">
               <div className="flex gap-2">
-                <Link
+                <Link to={`/user/edit/${user.id}`}
                 className="text-ligth-primary hover:text-[#0056b3] 
                 dark:text-dark-primary dark:hover:text-[#e85a3a]">
                   <i className="fa-regular fa-pen-to-square"></i>

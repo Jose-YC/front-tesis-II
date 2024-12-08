@@ -6,7 +6,7 @@ export const Rol = ({ initialForm, onRolChange, onSubmit}) => {
   }
 
   return (
-    <form action="" onSubmit={onRolSubmit}>
+    <form className='mb-6 dark:text-black' onSubmit={onRolSubmit}>
         <div className='flex flex-col md:flex-row md:items-center gap-y-2 mb-4'>
             <div className='w-full md:w-1/4'>
                 <p className="text-gray-600 dark:text-gray-300/90">Nombre <span className="text-red-500">*</span></p>
@@ -14,11 +14,11 @@ export const Rol = ({ initialForm, onRolChange, onSubmit}) => {
         <div className="flex-1">
           <input type="text" 
           name="name"
+          placeholder="Nombre"
           value={initialForm.name}
           onChange={onRolChange}
-          className="w-full py-1.5 px-4 rounded-lg outline-none
-          bg-opacity-65 bg-ligth-secondary-400
-          dark:bg-white dark:text-black border-transparent" />
+          className="w-full px-4 py-2 pl-4
+          pr-4 border rounded-md outline-none" />
         </div>
       </div>
       <button type="submit"

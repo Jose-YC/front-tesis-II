@@ -21,7 +21,8 @@ export const SaleSlice = createSlice({
                 (item) => 
                     (item.product_id === product_id && 
                     item.measures_id === measures_id)
-            );
+            ); 
+            
             if (!productInSale) {
                 state.product = [
                     ...state.product, 

@@ -22,7 +22,7 @@ export const useOrden = () => {
     const calculateTotals = () => {
         const total = product.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         return { total };
-      };
+    };
 
     return {
         product,

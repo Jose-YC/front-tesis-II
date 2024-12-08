@@ -14,8 +14,8 @@ export const useSale = () => {
         dispatch(onDeleteProductVenta({id}))
     }
 
-    const ResetProductVenta = (id) => {
-        dispatch(onResetProductVenta({id}))
+    const ResetProductVenta = () => {
+        dispatch(onResetProductVenta())
     }
     const UpdateQuantityVenta = (product, quantity) => {
         dispatch(onUpdateQuantityVenta({product, quantity}))
@@ -23,7 +23,6 @@ export const useSale = () => {
 
     const calculateTotals = () => {
         const subtotal = product.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        console.log(subtotal, taxRate)
         const taxAmount = subtotal ? subtotal * taxRate : 0;
         const total = subtotal && taxAmount ? subtotal + taxAmount: 0;
         return { subtotal, taxAmount, total };

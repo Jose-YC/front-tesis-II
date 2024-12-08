@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNotification } from './useNotification';
 
-export const useForm = ( initialForm = {}, formValidations = {}, startGetId, id ) => {
+
+export const useForm = ( initialForm = {}, formValidations = {}) => {
   
     const [ formState, setFormState ] = useState( initialForm );
     const [ formValidation, setFormValidation ] = useState({});
-    const { AddNotification } = useNotification()
 
     useEffect(() => {
         createValidators();
@@ -14,20 +13,6 @@ export const useForm = ( initialForm = {}, formValidations = {}, startGetId, id 
     useEffect(() => {
         setFormState( initialForm );
     }, [ initialForm ])
-
-    useEffect(() => {
-        if (!id) return
-        AxiosData( id );
-    }, [ id ])
-
-    const AxiosData = async (id) => {
-        try {
-            const result = await startGetId(id);
-            Object.keys(result).forEach((key) => {setValue(key, result[key])});
-        } catch (error) {   
-          AddNotification({type: 'error', message: error.message, duration: 10000})
-        } 
-      }; 
     
     const isFormValid = useMemo( () => {
         for (const formValue of Object.keys( formValidation )) {
@@ -65,8 +50,6 @@ export const useForm = ( initialForm = {}, formValidations = {}, startGetId, id 
         }
         setFormValidation( formCheckedValues );
     }
-
-
 
     return {
         ...formState,

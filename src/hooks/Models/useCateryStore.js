@@ -1,6 +1,7 @@
 import {Api} from '../../api';
 import { useNotification } from '../useNotification';
 
+
 export const useCategoryStore = () => {
     
     const { AddNotification } = useNotification();
@@ -19,7 +20,6 @@ export const useCategoryStore = () => {
     
     const startGetIdCategory = async (id) => {
         const {data} = await Api.get(`/category/search/${id}`);
-        console.log(data)
         if (data.Status==false) {throw new Error(data.error)};
         return data.category;
     };
@@ -27,9 +27,9 @@ export const useCategoryStore = () => {
     const startAddNewCategory = async (category) => {
         try {
             const {data} = await Api.post('/category/create', category);
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Categoria ingresada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -38,20 +38,19 @@ export const useCategoryStore = () => {
 
         try {
             const {data} = await Api.delete(`/category/delete/${uid}`);
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Categoria eliminada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
         
     };
 
-    const startUpdateCategory = async ({id, name, description, parent_id}) => {
+    const startUpdateCategory = async (category, id) => {
         try {
-            const {data} = await Api.put(`/category/update/${id}`, { name, description, parent_id});
-            console.log(data);
+            const {data} = await Api.put(`/category/update/${id}`, category);
+            AddNotification({type: 'success', message: 'Categoria modificada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };

@@ -14,7 +14,8 @@ export default {
           secondary:{
             100: '#ffffff',
             400: '#f3f4f6'
-          }
+          },
+          booton: ''
         },
 
         dark: {
@@ -22,7 +23,8 @@ export default {
           secondary: {
             100: "#1E1F25",
             900: "#131517"
-          }
+          },
+          booton: ''
         },
 
       },

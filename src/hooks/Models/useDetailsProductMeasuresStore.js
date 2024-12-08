@@ -6,16 +6,14 @@ export const useDetailsProductMeasuresStore = () => {
     const { AddNotification } = useNotification();
 
     const startGetDetailsPM = async (page, lim, product_id) => {
-        const {data} = await Api.get(`/details/product/measures/${product_id}?lim=${lim}&page=${page}`);
-        console.log(data);
+        const {data} = await Api.get(`/product/measures/${product_id}?lim=${lim}&page=${page}`);
         if (data.Status==false) {throw new Error(data.error)};
         return data;
     };
 
     
-    const startGetIdDetailsPM = async (measures_id, product_id) => {
-        const {data} = await Api.get(`/details/product/measures/search/${product_id}/${measures_id}`);
-        console.log(data)
+    const startGetIdDetailsPM = async (product_id, measures_id) => {
+        const {data} = await Api.get(`/product/measure/search/${product_id}/${measures_id}`);
         if (data.Status==false) {throw new Error(data.error)};
         return data.measures;
     };
@@ -23,7 +21,8 @@ export const useDetailsProductMeasuresStore = () => {
     const startAddNewDetailsPM = async (details) => {
         try {
             const {data} = await Api.post('/details/product/measures/create', details);
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Medida añadida correctamente', duration: 10000});
         } catch (error) {
             console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
@@ -41,11 +40,23 @@ export const useDetailsProductMeasuresStore = () => {
         }
         
     };
+
+    const startUpdateDetailsPM = async (product_id, measures_id, details) => {
+        try {
+            const {data} = await Api.put(`/product/measure/update/${product_id}/${measures_id}`, details);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Medida modificada correctamente', duration: 10000});
+        } catch (error) {
+            console.log(error);
+            AddNotification({type: 'error', message: error.message, duration: 10000});
+        }
+    };
     
     return {
         startAddNewDetailsPM,
         startGetDetailsPM,
         DeleteDetailsPM,
-        startGetIdDetailsPM
+        startGetIdDetailsPM,
+        startUpdateDetailsPM
     }
 }

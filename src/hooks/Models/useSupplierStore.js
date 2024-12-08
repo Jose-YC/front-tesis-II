@@ -19,17 +19,16 @@ export const useSupplierStore = () => {
     
     const startGetIdSupplier = async (id) => {
         const {data} = await Api.get(`/supplier/search/${id}`);
-        console.log(data);
         if (data.Status==false) {throw new Error(data.error)};
         return data.supplier;
     };
 
-    const startAddNewSupplier = async ({ repre, ruc, email, address, phone }) => {
+    const startAddNewSupplier = async (supplier) => {
         try {
-            const {data} = await Api.post('/supplier/create', { repre, ruc, email, address, phone });
-            console.log(data);
+            const {data} = await Api.post('/supplier/create', supplier);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Proveedor ingresado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -38,20 +37,20 @@ export const useSupplierStore = () => {
 
         try {
             const {data} = await Api.delete(`/supplier/delete/${uid}`);
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Proveedor eliminado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
         
     };
 
-    const startUpdateSupplier = async ({id, repre, ruc, email, address, phone}) => {
+    const startUpdateSupplier = async (id, supplier) => {
         try {
-            const {data} = await Api.put(`/supplier/update/${id}`, { repre, ruc, email, address, phone });
-            console.log(data);
+            const {data} = await Api.put(`/supplier/update/${id}`, supplier);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Proveedor modificado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };

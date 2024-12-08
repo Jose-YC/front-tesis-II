@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export const useThema = () => {
     const [colorMode, setColorMode] = useState(() => {
-      
+          
       return 'light'
     });
 

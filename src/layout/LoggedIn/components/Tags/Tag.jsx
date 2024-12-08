@@ -24,12 +24,13 @@ export const Tag = ({
       border-gray-300 rounded-md px-4 py-2 
       pr-4 outline-none dark:border-gray-600">
           {tags.map((tag) => (
-            <span key={(tag.id)}className="inline-flex items-center bg-ligth-primary
+            <span key={(tag.name)}className="inline-flex items-center bg-ligth-primary
             text-ligth-primary bg-opacity-25 text-xs px-2 py-1 transition-all duration-200 ease-in-out 
             rounded-full text-black dark:bg-dark-primary dark:bg-opacity-25 dark:text-dark-primary">
               {tag.name}
-              <button className="ml-1 focus:outline-none"
-              onClick={() => remove(tag.id)}>
+              <button type='button'
+              className="ml-1 focus:outline-none"
+              onClick={() => remove(tag.category_id)}>
                 <i className="fa-solid fa-xmark"></i>
               </button>
             </span>

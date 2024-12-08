@@ -13,7 +13,7 @@ export const Logo = () => {
         url shorting
       </h2> */}
 
-      <img src="https://res.cloudinary.com/dbe4rxkkn/image/upload/v1727096115/Img/lcek4kp88lkwvjdomw3j.webp" 
+      <img src="https://res.cloudinary.com/dbe4rxkkn/image/upload/v1732549882/Img/f87mg4ukjpchrexgjduh.webp" 
       className=" w-[45%] sm:w-[55%] md:w-[55%] lg:w-[55%] xl:w-[55%]"
       alt="logo"/>
       <h2 className="uppercase text-[1rem] font-bold tracking-[1px]">

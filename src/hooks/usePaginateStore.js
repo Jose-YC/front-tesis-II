@@ -29,7 +29,7 @@ export const usePaginateStore = (startGet, startGetSearch) => {
   useEffect(() => {
       if (data[currentPage]) return;
       AxiosData(); 
-  }, [currentPage, dispatch, searchPage, totalPages]);
+  }, [currentPage, dispatch, searchPage, totalPages, data]);
   
   const AxiosData = async () => {
     dispatch(onIsLoading({isLoding: true}));
@@ -42,7 +42,6 @@ export const usePaginateStore = (startGet, startGetSearch) => {
       dispatch(onDeclareVariables({data: result.data.data, total: result.data.total, currentPage}));
 
     } catch (error) {
-      console.log(error);
       AddNotification({type: 'error', message: error.message, duration: 10000})
     } finally {
       dispatch(onIsLoading({isLoding: false}));

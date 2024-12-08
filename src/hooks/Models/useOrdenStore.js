@@ -23,22 +23,29 @@ export const useOrdenStore = () => {
         return data.orden;
     };
 
-    const startAddNewOrden = async ({ name }) => {
+    const startGetIdDetailsOrden = async (id) => {
+        const {data} = await Api.get(`/orden/details/search/${id}`);
+        if (data.Status==false) {throw new Error(data.error)};
+        return data.orden;
+    };
+
+
+    const startAddNewOrden = async (orden) => {
         try {
-            const {data} = await Api.post('/orden/create', { name });
-            console.log(data);
+            const {data} = await Api.post('/orden/create', orden);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Orden ingresada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
 
-    const startUpdateOrden = async ({id, name}) => {
+    const startUpdateOrden = async (id, state) => {
         try {
-            const {data} = await Api.put(`/orden/update/${id}`, { name });
-            console.log(data);
+            const {data} = await Api.put(`/orden/update/${id}`, {state});
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Orden modificada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -48,6 +55,7 @@ export const useOrdenStore = () => {
         startUpdateOrden,
         startGetOrden,
         startGetSearchOrden,
-        startGetIdOrden
+        startGetIdOrden,
+        startGetIdDetailsOrden,
     }
 }

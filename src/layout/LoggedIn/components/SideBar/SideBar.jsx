@@ -18,6 +18,7 @@ export const SideBar = () => {
     bg-ligth-secondary-100
     dark:border-r-dark-secondary-100
     dark:bg-dark-secondary-100 dark:text-white 
+    
     ${openMenu ? "left-0" : "-left-full"} transition-all`}>
       <div>
         <Logo/>

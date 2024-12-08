@@ -23,12 +23,12 @@ export const useMeasuresStore = () => {
         return data.measures;
     };
 
-    const startAddNewMeasures = async ({ name }) => {
+    const startAddNewMeasures = async (measure) => {
         try {
-            const {data} = await Api.post('/measures/create', { name });
-            console.log(data);
+            const {data} = await Api.post('/measures/create', measure);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Medida ingresada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -37,20 +37,20 @@ export const useMeasuresStore = () => {
 
         try {
             const {data} = await Api.delete(`/measures/delete/${uid}`);
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Medida eliminada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
         
     };
 
-    const startUpdateMeasures = async ({id, name}) => {
+    const startUpdateMeasures = async (id, measure) => {
         try {
-            const {data} = await Api.put(`/measures/update/${id}`, { name });
-            console.log(data);
+            const {data} = await Api.put(`/measures/update/${id}`, measure);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Medida modificada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };

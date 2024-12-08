@@ -5,16 +5,14 @@ export const useAxios = () => {
     let controller = new AbortController();
   
     const callEndpoint = async (axios, controllers) => {
-      if (controller) controller = controllers;
+      if (controllers) controller = controllers;
       setLoading(true);
       let result = {} ;
       try {
         result = await axios;
-        // console.log(result);
       } catch (err) {
         setLoading(false);
-        console.log(err);
-        // throw err;
+        throw err;
       }
       setLoading(false);
       return result;

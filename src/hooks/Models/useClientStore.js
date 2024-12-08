@@ -19,7 +19,6 @@ export const useClientStore = () => {
     
     const startGetIdClient = async (id) => {
         const {data} = await Api.get(`/client/search/${id}`);
-        console.log(data)
         if (data.Status==false) {throw new Error(data.error)};
         return data.client;
     };
@@ -27,9 +26,10 @@ export const useClientStore = () => {
     const startAddNewClient = async (client) => {
         try {
             const {data} = await Api.post('/client/create', client);
-            console.log(data);
+            console.log(data)
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Cliente ingresado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -38,20 +38,21 @@ export const useClientStore = () => {
 
         try {
             const {data} = await Api.delete(`/client/delete/${uid}`);
-            console.log(data);
+            console.log(data)
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Cliente eliminado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
         
     };
 
-    const startUpdateClient = async ({id, name, description, parent_id}) => {
+    const startUpdateClient = async (id, client) => {
         try {
-            const {data} = await Api.put(`/client/update/${id}`, { name, description, parent_id});
-            console.log(data);
+            const {data} = await Api.put(`/client/update/${id}`, client);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Cliente modificado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };

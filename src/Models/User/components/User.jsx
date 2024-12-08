@@ -9,57 +9,110 @@ export const User = ({ initialForm, onUserChange, onSubmit}) => {
   }
   return (
     <form className='mb-6 dark:text-black' onSubmit={onUserSubmit}>
-      <div className='relative mb-4'>
-        <i className="fa-solid fa-user
-        absolute top-1/2 -translate-y-1/2 
-        left-3 text-ligth-primary text-opacity-50
-        dark:text-dark-primary"/>
+      <div className='flex flex-col gap-y-2 md:flex-row md:items-center mb-4 '>
+              <div className='w-full md:w-1/4'>
+              <p className="text-gray-600 dark:text-gray-300/90">Nombre <span className="text-red-500">*</span></p>
+              </div>
+              <div className="flex-1 flex items-center gap-4">
+                <div className="w-full">
+                    <input type="text" 
+                    placeholder='Nombre'
+                    name="name"
+                    value={initialForm.name}
+                    onChange={onUserChange}
+                    className="w-full px-4 py-2 pl-4
+                    pr-4 border rounded-md outline-none" />
+                </div>
 
-        <input type="text" 
-        className='w-full bg-ligth-secondary-400 py-2 pl-10 
-        pr-4 rounded-lg outline-none' 
-        placeholder='Name'
-        name='name'
-        value={initialForm.name}
-        onChange={onUserChange}/>
-      </div>
-
-        <div className='relative mb-4'>
-        <i className="fa-solid fa-envelope
-        absolute top-1/2 -translate-y-1/2 
-        left-3 text-ligth-primary text-opacity-50
-        dark:text-dark-primary"/>
-
-        <input type="email" 
-        className='w-full bg-ligth-secondary-400 py-2 pl-10 
-        pr-4 rounded-lg outline-none' 
-        placeholder='Email'
-        name='email'
-        value={initialForm.email}
-        onChange={onUserChange}/>
+                <div className="w-full">
+                    <input type="text" 
+                    placeholder='Apellidos'
+                    name="lastname"
+                    value={initialForm.lastname}
+                    onChange={onUserChange}
+                    className="w-full px-4 py-2 pl-4
+                    pr-4 border rounded-md outline-none" />
+                </div>
+              </div>
         </div>
 
-        <div className='relative mb-8'>
-        <i className="fa-solid fa-lock 
-        absolute top-1/2 -translate-y-1/2
-        left-3 text-ligth-primary text-opacity-50
-        dark:text-dark-primary"/>
+        <div className='flex flex-col md:flex-row md:items-center gap-y-2 mb-4'>
+            <div className='w-full md:w-1/4'>
+                <p className="text-gray-600 dark:text-gray-300/90">Email <span className="text-red-500">*</span></p>
+            </div>
+            <div className="flex-1">
+                <input type="email" 
+                className='w-full px-4 py-2 pl-4
+                pr-4 border rounded-md outline-none' 
+                placeholder='Email'
+                name='email'
+                value={initialForm.email}
+                onChange={onUserChange}/>
+            </div>
+        </div>
 
-        <input type={`${ isPassword ? 'text' :'password'}`}
-        className='w-full bg-ligth-secondary-400 py-2 pl-10 
-        pr-4 rounded-lg outline-none' 
-        placeholder='Password'
-        name='password'
-        value={initialForm.password}
-        onChange={onUserChange}/>
+        <div className='flex flex-col md:flex-row md:items-center gap-y-2 mb-4'>
+            <div className='w-full md:w-1/4'>
+                <p className="text-gray-600 dark:text-gray-300/90">Contraseña <span className="text-red-500">*</span></p>
+            </div>
+            <div className="flex-1">
+              <div className='relative'>
+                <input type={`${ isPassword ? 'text' :'password'}`}
+                className='w-full px-4 py-2 pl-4
+                pr-4 border rounded-md outline-none' 
+                placeholder='Password'
+                name='password'
+                value={initialForm.password}
+                onChange={onUserChange}/>
 
-        <i className={`fa-regular 
-        ${isPassword ? 'fa-eye-slash' : 'fa-eye'}
-        absolute top-1/2 -translate-y-1/2 right-2
-        hover:cursor-pointer text-ligth-primary text-opacity-50
-        dark:text-dark-primary`}
-        onClick={() => setIsPassword(!isPassword)}/>
-        </div>   
+                <i className={`fa-regular 
+                ${isPassword ? 'fa-eye-slash' : 'fa-eye'}
+                absolute top-1/2 -translate-y-1/2 right-2
+                hover:cursor-pointer text-ligth-primary text-opacity-50
+                dark:text-dark-primary`}
+                onClick={() => setIsPassword(!isPassword)}/>
+              </div> 
+            </div>
+        </div>
+
+        <div className='flex flex-col md:flex-row md:items-center gap-y-2 mb-4'>
+            <div className='w-full md:w-1/4'>
+                <p className="text-gray-600 dark:text-gray-300/90">Celular <span className="text-red-500">*</span></p>
+            </div>
+            <div className="flex-1">
+                <input type="number" 
+                className='w-full px-4 py-2 pl-4
+                pr-4 border rounded-md outline-none' 
+                placeholder='phone'
+                name='phone'
+                value={initialForm.phone}
+                onChange={onUserChange}/>
+            </div>
+        </div>
+
+        
+        <div className='flex flex-col md:flex-row md:items-center gap-y-2 mb-4'>
+            <div className='w-full md:w-1/4'>
+                <p className="text-gray-600 dark:text-gray-300/90">Rol <span className="text-red-500">*</span></p>
+            </div>
+            <div className="flex-1">
+              <select 
+              name='rolName'
+              value={initialForm.rolName}
+              onChange={onUserChange}
+              className="w-full px-3 py-2 
+              border rounded-md outline-none">
+                {initialForm.rol.map((rol) => (
+                    <option key={rol.id} value={rol.name}>
+                        {rol.name}
+                    </option>
+                ))}
+              </select>
+            </div>
+        </div>
+          
+
+        
 
         <button type="submit"
         className="uppercase font-bold text-sm

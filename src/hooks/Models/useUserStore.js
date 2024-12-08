@@ -11,6 +11,12 @@ export const useUserStore = () => {
         return data;
     };
 
+    const startGetIdUser = async (id) => {
+        const {data} = await Api.get(`/user/search/${id}`);
+        if (data.Status==false) {throw new Error(data.error)};
+        return data.user;
+    };
+
     const startGetSearchUsers = async (page, lim, search) => {
         const {data} = await Api.get(`/user/${search}?lim=${lim}&page=${page}`);
         if (data.Status==false) {throw new Error(data.error)};
@@ -20,40 +26,30 @@ export const useUserStore = () => {
     const DeleteUser = async (uid) =>{
         try {
             const {data} = await Api.delete(`/user/delete/${uid}`);
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Usuario eliminado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
 
 
-
-
-
-
-
-
-
-
-
-
-    const startAddNewUser = async ({email, password, lastname, name, phone}) => {
+    const startAddNewUser = async (user) => {
         try {
-            const {data} = await Api.post('/user/create', {email, password, lastname, name, phone});
-            console.log(data);
+            const {data} = await Api.post('/user/create', user);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Usuario ingresado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
 
-    const startUpdateUser = async ({id, email, password, lastname, phone, name, rolName}) => {
+    const startUpdateUser = async (user, id) => {
         try {
-            const {data} = await Api.put(`/user/update/${id}`, {email, password, lastname, phone, name, rolName});
-            console.log(data);
+            const {data} = await Api.put(`/user/update/${id}`, user);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Usuario modificado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -61,10 +57,9 @@ export const useUserStore = () => {
     const startUpdateProfile = async ({id, lastname, name, phone}) => {
         try {
             const {data} = await Api.put(`/user/profile/${id}`, { lastname, name, phone });
-
-            console.log(data);
+            if (data.Status==false) {throw new Error(data.error)};
+            AddNotification({type: 'success', message: 'Perfil modificado correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -76,10 +71,7 @@ export const useUserStore = () => {
             formData.append('img', user.img);
             formData.append('imgAnt', user.imgAnt);
             const {data} = await Api.put(`/user/photo`, formData);
-
-            console.log(data);
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -92,5 +84,6 @@ export const useUserStore = () => {
         startUpdateProfilePhoto,
         DeleteUser,
         startGetSearchUsers,
+        startGetIdUser
     }
 }

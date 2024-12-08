@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useForm, useRolStore } from '../../../hooks';
+import { useAsync, useAxios, useForm, useRolStore } from '../../../hooks';
 import { LayoutPage } from '../../../layout/LoggedIn';
 import { NotificationSystem } from '../../NotificationItem/NotificationSystem';
 import { Rol } from '../components/Rol'
@@ -10,13 +10,21 @@ const RolForm = {
   };
 
 export const UpdateRolPage = () => {
-    const { startUpdateRol, startGetIdRol } =  useRolStore();
-    const { id } = useParams();
-    const { formState, onInputChange:onRolChange } = useForm(RolForm, {} ,startGetIdRol, id);
 
-    const onSubmit = () => {
-        startUpdateRol(formState)
-    }
+  const { formState, onInputChange:onRolChange, setValue } = useForm(RolForm);
+  const { startGetIdRol, startUpdateRol } = useRolStore();
+  const { callEndpoint } = useAxios();
+  const { id } = useParams();
+
+  const adapterRol = obj => setValue('name', obj.name);
+  const getData = async() => await callEndpoint(startGetIdRol(id))
+  useAsync(getData,adapterRol, () => {}, [id], () => {return true})
+  
+
+  const onSubmit = () => {
+    startUpdateRol(id, formState);
+  };
+
   return (
     <LayoutPage>
         <section className="h-[91vh] relative overflow-y-auto p-8 bg-ligth-secondary-400 flex 
