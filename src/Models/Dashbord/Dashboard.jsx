@@ -35,7 +35,7 @@ export const Dashboard = () => {
     }))
   useAsync(getDataVentaDay,adapterVentaDay, () => {}, [], () => {return true})
 
-  const adapterVentaSemana = (obj) => {setsVentaSemana(obj); console.log(obj)};
+  const adapterVentaSemana = (obj) => {setsVentaSemana(obj);};
   const getDataVentaSemana = async() => await callEndpoint(
     startGetTotalDay({ 
       startDate: new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 5 , 0, 0, 0, 0)), 

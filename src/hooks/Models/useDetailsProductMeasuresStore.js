@@ -24,7 +24,6 @@ export const useDetailsProductMeasuresStore = () => {
             if (data.Status==false) {throw new Error(data.error)};
             AddNotification({type: 'success', message: 'Medida añadida correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -33,9 +32,7 @@ export const useDetailsProductMeasuresStore = () => {
 
         try {
             const {data} = await Api.delete(`/details/product/measures/delete/${product_id}/${measures_id}`);
-            console.log(data);
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
         
@@ -47,7 +44,6 @@ export const useDetailsProductMeasuresStore = () => {
             if (data.Status==false) {throw new Error(data.error)};
             AddNotification({type: 'success', message: 'Medida modificada correctamente', duration: 10000});
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };

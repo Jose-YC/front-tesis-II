@@ -7,6 +7,13 @@ export const itemMenu = [
     },
 
     { 
+      name: "IA", 
+      to: "https://app-ventas.streamlit.app/", 
+      icon: "fas fa-brain",
+      type: "singleLink"
+    },
+
+    { 
       name: "Catálogo", 
       to: "/product/catalogo", 
       icon: "fas fa-book",

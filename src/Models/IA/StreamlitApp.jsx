@@ -11,7 +11,8 @@ export const StreamlitApp = () => {
             <div className='rounded-xl overflow-hidden
             flex flex-col w-full h-full
             shadow-2xl bg-ligth-secondary-100 dark:bg-dark-secondary-100 p-8'>
-                <iframe src="http://localhost:8501" width="100%" height='100%' />
+                <iframe src="https://app-ventas.streamlit.app/" title="Streamlit App"
+          loading="lazy" width="100%" height='100%' />
             </div>
         </section>
     </LayoutPage>

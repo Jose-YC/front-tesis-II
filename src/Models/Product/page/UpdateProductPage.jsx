@@ -19,7 +19,6 @@ export const UpdateProductPage = () => {
     const { id } = useParams()
   
     const adapterProduct = (obj) => {
-        console.log(obj);
         setValue('description', obj.description);
         setValue('name', obj.name);
     };

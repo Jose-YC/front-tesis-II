@@ -21,7 +21,6 @@ export const CreateCategoryPage = () => {
     useAsync(getData,adapterCategory, () => {}, [], () => {return true})
 
     const onSubmit = () => {
-        console.log(formState)
         startAddNewCategory({...formState, parent_id: !formState.parent_id ? null : parseInt(formState.parent_id)})
     }
   return (

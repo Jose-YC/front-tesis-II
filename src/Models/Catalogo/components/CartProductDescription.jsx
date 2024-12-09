@@ -13,8 +13,6 @@ export const CartProductDescription = ({ product = {} }) => {
       return { measures: { abbrev: 'not' } }; 
     });
 
-    console.log(size);
-
     const { AddProductOrden } = useOrden()
     const { AddProductVenta } =  useSale()
   

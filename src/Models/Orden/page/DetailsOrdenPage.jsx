@@ -11,7 +11,7 @@ export const DetailsOrdenPage = () => {
     const { callEndpoint } = useAxios();
     const { id } = useParams()
   
-    const adapter = obj => {setOrden(obj); console.log(obj)};
+    const adapter = obj => {setOrden(obj);};
     const getData = async() => await callEndpoint(startGetIdDetailsOrden(id))
     useAsync(getData, adapter, () => {}, [id], () => {return true})
   return (

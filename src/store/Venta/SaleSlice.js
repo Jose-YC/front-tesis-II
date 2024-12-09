@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const calculateTotals = (products, taxRate) => {
     const subtotal = products.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    console.log(subtotal);
     const taxAmount = subtotal ? subtotal * taxRate : 0;
     const total = subtotal ? subtotal + taxAmount: 0;
     return { subtotal, taxAmount, total };

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useAsync, useAxios, useSaleStore } from '../../../hooks'
 import { generateBalancedColors } from '../../../helpers/colorsGenerate';
 import { Fechas } from '../components/Fechas';
-import { GraficaTactico } from '../components/graficaTactico';
+import { GraficaTactico } from '../components/GraficaTactico';
 
 export const ReportTactico = () => {
   const [fechaInicio, setFechaInicio] = useState(new Date(Date.UTC(2024, 11, 4)));

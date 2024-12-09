@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { getEnvVariables } from '../../../helpers';
 
 export const ListOrden = ({ data, startUpdateOrden }) => {
+    const {VITE_API_URL} = getEnvVariables();
 
     if (!data || data.length === 0) {
         return <div>No hay Ordenes para mostrar.</div>;
@@ -106,7 +108,7 @@ export const ListOrden = ({ data, startUpdateOrden }) => {
                     dark:text-dark-primary dark:hover:text-[#e85a3a]">
                     <i className="fa-regular fa-eye"/>
                     </Link>
-                    <div onClick={() => window.open(`http://localhost:8081/orden/pdf/${orden.id}`, '_blank', 'noopener,noreferrer')} 
+                    <div onClick={() => window.open(`${VITE_API_URL}/orden/pdf/${orden.id}`, '_blank', 'noopener,noreferrer')} 
                     className="text-ligth-primary hover:text-[#0056b3] 
                     dark:text-[#EE6C4D] dark:hover:text-[#e85a3a]">
                         <i className="fa-solid fa-print"/>

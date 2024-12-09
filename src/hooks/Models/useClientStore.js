@@ -26,7 +26,6 @@ export const useClientStore = () => {
     const startAddNewClient = async (client) => {
         try {
             const {data} = await Api.post('/client/create', client);
-            console.log(data)
             if (data.Status==false) {throw new Error(data.error)};
             AddNotification({type: 'success', message: 'Cliente ingresado correctamente', duration: 10000});
         } catch (error) {
@@ -38,7 +37,6 @@ export const useClientStore = () => {
 
         try {
             const {data} = await Api.delete(`/client/delete/${uid}`);
-            console.log(data)
             if (data.Status==false) {throw new Error(data.error)};
             AddNotification({type: 'success', message: 'Cliente eliminado correctamente', duration: 10000});
         } catch (error) {

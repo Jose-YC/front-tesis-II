@@ -11,7 +11,7 @@ export const DetailsSalesPage = () => {
     const { callEndpoint } = useAxios();
     const { id } = useParams()
   
-    const adapter = obj => {setSale(obj); console.log(obj)};
+    const adapter = obj => {setSale(obj);};
     const getData = async() => await callEndpoint(startGetIdDetailsSale(id))
     useAsync(getData, adapter, () => {}, [id], () => {return true})
   return (

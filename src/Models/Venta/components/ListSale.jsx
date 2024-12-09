@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { getEnvVariables } from '../../../helpers';
 
 export const ListSale = ({ data }) => {
+    const {VITE_API_URL} = getEnvVariables();
     if (!data || data.length === 0) {
         return <div>No hay Ventas para mostrar.</div>;
       }
@@ -102,7 +104,7 @@ export const ListSale = ({ data }) => {
                     dark:text-dark-primary dark:hover:text-[#e85a3a]">
                     <i className="fa-regular fa-eye"/>
                     </Link>
-                    <div onClick={() => window.open(`http://localhost:8081/sale/pdf/${sale.id}`, '_blank', 'noopener,noreferrer')} 
+                    <div onClick={() => window.open(`${VITE_API_URL}/sale/pdf/${sale.id}`, '_blank', 'noopener,noreferrer')} 
                     className="text-ligth-primary hover:text-[#0056b3] 
                     dark:text-[#EE6C4D] dark:hover:text-[#e85a3a]">
                         <i className="fa-solid fa-print"/>

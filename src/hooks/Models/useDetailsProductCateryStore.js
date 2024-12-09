@@ -23,7 +23,6 @@ export const useDetailsProductCateryStore = () => {
             const {data} = await Api.post('/details/product/category/create', details);
             
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
     };
@@ -32,9 +31,7 @@ export const useDetailsProductCateryStore = () => {
 
         try {
             const {data} = await Api.delete(`/details/product/category/delete/${product_id}/${category_id}`);
-            console.log(data);
         } catch (error) {
-            console.log(error);
             AddNotification({type: 'error', message: error.message, duration: 10000});
         }
         

@@ -20,7 +20,6 @@ export const UpdateCategoryPage = () => {
   const { id } = useParams();
 
   const adapterCategory = (obj) => {
-    console.log(obj);
     setValue('name', obj.name);
     setValue('description', obj.description);
     setValue('parent_id', obj.parent_id);

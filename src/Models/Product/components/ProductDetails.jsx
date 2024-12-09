@@ -24,7 +24,6 @@ export const ProductDetails = ({ initialForm, onChange, onfunction, onSubmit}) =
     }
 
     const handleRemove= (option) => {
-      console.log(option)
       onfunction.removeArrayCategory( option, 'category_id')
     }
 
