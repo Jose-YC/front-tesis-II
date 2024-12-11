@@ -13,7 +13,7 @@ export const GraficaOperativo = ({data = []}) => {
             chartRef,
             PDFComponent: ReportOperativoPDF,
             fileName: 'report-operativo',
-            props: { report: data }
+            props: { report: data.resp }
           });
         } catch (error) {
           console.error('Error downloading PDF:', error);

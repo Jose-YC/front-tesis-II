@@ -60,7 +60,7 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
         marginBottom: 6,
       },
       value: {
-        fontSize: 13,
+        fontSize: 10,
         marginBottom: 4,
         color: '#333333',
       },
@@ -76,7 +76,7 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
       },
       tableHeaderText: {
         color: 'white',
-        fontSize: 11,
+        fontSize: 10,
         fontFamily: 'Helvetica-Bold',
         textTransform: 'uppercase',
         letterSpacing: 0.5,
@@ -85,16 +85,13 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderColor: '#e0e0e0',
-        padding: 12,
+        padding: 8,
         backgroundColor: 'white',
       },
       tableRowAlt: {
         backgroundColor: '#f9f9f9',
       },
-      column1: { width: '40%' },
-      column2: { width: '20%', textAlign: 'center' },
-      column3: { width: '20%', textAlign: 'right' },
-      column4: { width: '20%', textAlign: 'right' },
+      column: { width: '50%', textAlign: 'center' },
       total: {
         marginTop: 30,
         padding: 15,
@@ -127,18 +124,6 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
         textTransform: 'uppercase',
         letterSpacing: 0.5,
       },
-      statusPendiente: {
-        borderColor: '#666666',
-        color: '#666666',
-      },
-      statusEntregado: {
-        borderColor: '#333333',
-        color: '#333333',
-      },
-      statusCancelado: {
-        borderColor: '#666666',
-        color: '#666666',
-      },
       footer: {
         position: 'absolute',
         bottom: 30,
@@ -156,7 +141,7 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
         alignItems: 'center',
       },
       chart: {
-        width: 500,
+        width: 530,
       },
   });
 
@@ -165,11 +150,29 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
     return (
         <Document>
         <Page size="A4" style={styles.page}>
-          <View>
+
+
             <View style={styles.chartContainer}>
               <Image src={chartImage} style={styles.chart} />
             </View>
-          </View>
+
+            <View style={styles.table}>
+              <View style={styles.tableHeader}>
+                <Text style={[styles.tableHeaderText, styles.column]}>Fecha</Text>
+                <Text style={[styles.tableHeaderText, styles.column]}>Total</Text>
+              </View>
+              {report.map((item, index) => (
+                <View key={index} style={[
+                  styles.tableRow,
+                  index % 2 !== 0 ? styles.tableRowAlt : {}
+                ]}>
+                  <Text style={[styles.value, styles.column]}>{item.fecha}</Text>
+                  <Text style={[styles.value, styles.column]}>{item.total}</Text>
+                </View>
+              ))}
+            </View>
+
+         
   
           <Text style={styles.footer}>
             Este documento es un reporte oficial. Por favor, conserve una copia para sus registros.

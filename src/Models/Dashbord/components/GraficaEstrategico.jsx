@@ -10,7 +10,7 @@ export const GraficaEstrategico = ({data = []}) => {
             chartRef,
             PDFComponent: ReportEstrategicoPDF,
             fileName: 'report-estrategico',
-            props: { report: data }
+            props: { report: data.resp }
           });
         } catch (error) {
           console.error('Error downloading PDF:', error);

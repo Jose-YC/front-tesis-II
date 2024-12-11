@@ -11,7 +11,7 @@ export const GraficaTactico = ({data = [], COLORS = []}) => {
             chartRef,
             PDFComponent: ReportTacticoPDF,
             fileName: 'report-tactico',
-            props: { report: data }
+            props: { report: data.resp }
           });
         } catch (error) {
           console.error('Error downloading PDF:', error);
