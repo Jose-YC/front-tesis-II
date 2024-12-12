@@ -85,7 +85,7 @@ export const Sale = ({initialForm , onfunction, onSaleChange, suggestions, onSub
 
             <div className='flex flex-col md:flex-row md:items-center gap-y-2 mb-4'>
                 <div className='w-full md:w-1/4'>
-                    <p className="text-gray-600 dark:text-gray-300/90">Documento<span className="text-red-500">*</span></p>
+                    <p className="text-gray-600 dark:text-gray-300/90">Metodo de Pago<span className="text-red-500">*</span></p>
                 </div>
                 <div className="flex-1">
                   <select 
