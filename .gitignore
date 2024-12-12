@@ -7,6 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+Kim Comestic-win32-x64
+
 node_modules
 .env
 dist
