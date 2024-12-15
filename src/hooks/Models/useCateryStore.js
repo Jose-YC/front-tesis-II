@@ -8,26 +8,26 @@ export const useCategoryStore = () => {
 
     const startGetCategory = async (page, lim) => {
         const {data} = await Api.get(`/category/?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
 
     const startGetSearchCategory = async (page, lim, search) => {
         const {data} = await Api.get(`/category/${search}?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
     
     const startGetIdCategory = async (id) => {
         const {data} = await Api.get(`/category/search/${id}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data.category;
     };
 
     const startAddNewCategory = async (category) => {
         try {
             const {data} = await Api.post('/category/create', category);
-            if (data.Status==false) {throw new Error(data.error)};
+            if (data.Status==false) {throw new Error(data.message)};
             AddNotification({type: 'success', message: 'Categoria ingresada correctamente', duration: 10000});
         } catch (error) {
             AddNotification({type: 'error', message: error.message, duration: 10000});
@@ -38,7 +38,7 @@ export const useCategoryStore = () => {
 
         try {
             const {data} = await Api.delete(`/category/delete/${uid}`);
-            if (data.Status==false) {throw new Error(data.error)};
+            if (data.Status==false) {throw new Error(data.message)};
             AddNotification({type: 'success', message: 'Categoria eliminada correctamente', duration: 10000});
         } catch (error) {
             AddNotification({type: 'error', message: error.message, duration: 10000});

@@ -16,6 +16,7 @@ export const useAsync = (
           if (isActive) successFunction(result);
         })
         .catch((error) => {
+          console.log(error)
             if (isActive) AddNotification({type: 'error', message: error.message, duration: 10000});
         });
         return () => {

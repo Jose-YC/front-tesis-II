@@ -7,37 +7,37 @@ export const useProductStore = () => {
 
     const startGetProduct = async (page, lim) => {
         const {data} = await Api.get(`/product?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
 
     const startGetProductDetails = async (page, lim) => {
         const {data} = await Api.get(`/product/details?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
 
     const startGetSearchProduct = async (page, lim, search) => {
         const {data} = await Api.get(`/product/${search}?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
 
     const startGetSearchProductDetails = async (page, lim, search) => {
         const {data} = await Api.get(`/product/details/${search}?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
     
     const startGetIdProductDetails = async (id) => {
         const {data} = await Api.get(`/product/details/search/${id}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data.product;
     };
 
     const startGetIdProduct = async (id) => {
         const {data} = await Api.get(`/product/search/${id}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data.product;
     };
 
@@ -60,7 +60,7 @@ export const useProductStore = () => {
     
         try {
             const {data} = await Api.post('/product/create', formData);
-            if (data.Status==false) {throw new Error(data.error)};
+            if (data.Status==false) {throw new Error(data.message)};
             AddNotification({type: 'success', message: 'Producto ingresado correctamente', duration: 10000});
         } catch (error) {
             AddNotification({type: 'error', message: error.message, duration: 10000});
@@ -71,7 +71,7 @@ export const useProductStore = () => {
 
         try {
             const {data} = await Api.delete(`/product/delete/${uid}`);
-            if (data.Status==false) {throw new Error(data.error)};
+            if (data.Status==false) {throw new Error(data.message)};
             AddNotification({type: 'success', message: 'Producto eliminado correctamente', duration: 10000});
         } catch (error) {
             AddNotification({type: 'error', message: error.message, duration: 10000});
@@ -82,7 +82,7 @@ export const useProductStore = () => {
     const startUpdateProduct = async (id, product) => {
         try {
             const {data} = await Api.put(`/product/update/${id}`, product);
-            if (data.Status==false) {throw new Error(data.error)};
+            if (data.Status==false) {throw new Error(data.message)};
             AddNotification({type: 'success', message: 'Producto modificado correctamente', duration: 10000});
         } catch (error) {
             AddNotification({type: 'error', message: error.message, duration: 10000});

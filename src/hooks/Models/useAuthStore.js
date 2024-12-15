@@ -15,7 +15,8 @@ export const useAuthStore = () => {
         dispatch(onChecking());
        try {
         const {data} = await Api.post('auth/login', {email, password});
-        if (data.Status===false) {throw new Error(data.error.message)};
+        console.log(data);
+        if (data.Status===false) {throw new Error(data.message)};
         localStorage.setItem('token', data.token);
         dispatch(onLogin({
             name: data.user.name,
@@ -29,6 +30,7 @@ export const useAuthStore = () => {
         }));
 
        } catch (error) {
+        console.log(error)
         AddNotification({type: 'error', message: error.message, duration: 10000});
         dispatch(onLogout());
        }
@@ -40,7 +42,7 @@ export const useAuthStore = () => {
         try {
 
             const {data} = await Api.post('auth/register',{email, password, lastname, name, phone});
-            if (data.Status===false) {throw new Error(data.error.message)};
+            if (data.Status===false) {throw new Error(data.message)};
             localStorage.setItem('token', data.token);
             dispatch(onLogin({
                 name: data.user.name,
@@ -66,7 +68,7 @@ export const useAuthStore = () => {
        try {
 
         const {data} = await Api.get('auth/renew');
-        if (data.Status===false) {throw new Error(data.error.message)};
+        if (data.Status===false) {throw new Error(data.message)};
         localStorage.setItem('token', data.token);
         dispatch(onLogin({
             name: data.user.name,

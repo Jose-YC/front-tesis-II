@@ -7,14 +7,14 @@ export const useDetailsProductCateryStore = () => {
 
     const startGetDetailsPC = async (page, lim, product_id) => {
         const {data} = await Api.get(`/details/product/category/${product_id}?lim=${lim}&page=${page}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data;
     };
 
     
     const startGetIdDetailsPC = async (category_id, product_id) => {
         const {data} = await Api.get(`/details/product/category/search/${product_id}/${category_id}`);
-        if (data.Status==false) {throw new Error(data.error)};
+        if (data.Status==false) {throw new Error(data.message)};
         return data.category;
     };
 
