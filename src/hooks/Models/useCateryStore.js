@@ -49,6 +49,7 @@ export const useCategoryStore = () => {
     const startUpdateCategory = async (category, id) => {
         try {
             const {data} = await Api.put(`/category/update/${id}`, category);
+            if (data.Status==false) {throw new Error(data.message)};
             AddNotification({type: 'success', message: 'Categoria modificada correctamente', duration: 10000});
         } catch (error) {
             AddNotification({type: 'error', message: error.message, duration: 10000});
