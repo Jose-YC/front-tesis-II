@@ -9,7 +9,7 @@ export const notificationSlice = createSlice({
         
         onAddNotification: (state,{payload} ) => {
             const { message, type, duration } = payload;
-            state.notifications.push({id: Date.now(), type, message, duration});
+            state.notifications = [...state.notifications, {id: Date.now(), message, type, duration}]
         },
 
         onDeleteNotification: (state,{payload} ) => {
