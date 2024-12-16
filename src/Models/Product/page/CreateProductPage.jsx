@@ -54,7 +54,8 @@ export const CreateProductPage = () => {
         ...measure, 
         stock: parseInt(measure.stock), 
         min_stock: parseInt(measure.min_stock), 
-        price: parseFloat(measure.price)
+        price: parseFloat(measure.price),
+        income: parseFloat(measure.income)
       });
       onResetForm()
     };
